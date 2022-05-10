@@ -35,9 +35,10 @@ export default function StaticPage({ data }: { data: Data[] }) {
     <Layout title={title}>
       <Heading>{title}</Heading>
 
-      <Text pt="3">
+      <Text textAlign="center" pt="3">
         The data on this page is only fetched once during the build process
       </Text>
+
       <TableContainer pt="12">
         <Table>
           <Thead>
@@ -47,7 +48,7 @@ export default function StaticPage({ data }: { data: Data[] }) {
               <Th>created at</Th>
             </Tr>
 
-            {data.reverse().map((item) => {
+            {data.map((item) => {
               return (
                 <Tr key={item.id}>
                   <Td>{item.id}</Td>

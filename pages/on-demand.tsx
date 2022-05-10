@@ -12,6 +12,8 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import NextLink from "next/link";
+import { useRouter } from "next/router";
+import { CopyBlock, nord } from "react-code-blocks";
 
 import Layout from "~/components/Layout";
 
@@ -30,20 +32,51 @@ export async function getStaticProps() {
 }
 
 export default function OnDemandISR({ data }: { data: Data[] }) {
+  const router = useRouter();
+
   const title = "On-demand ISR Page 🥳";
+  const code =
+    "// api/revalidate.ts\nconst path = '/on-demand';\nawait res.unstable_revalidate(path);\nreturn res.json({ revalidated: true, path });";
 
   return (
     <Layout title={title}>
       <Heading>{title}</Heading>
 
-      <Text pt="3">You can update this page by re-validating</Text>
+      <Text textAlign="center" pt="3">
+        You can update this page by re-validating
+      </Text>
+
+      <VStack pt="4">
+        <CopyBlock
+          text={code}
+          language="typescript"
+          showLineNumbers={false}
+          theme={nord}
+          highlight="3"
+          codeBlock
+        />
+      </VStack>
+
       <NextLink href="/api/revalidate" passHref>
-        <Link>
-          <Button mt="2" colorScheme="teal">
+        <Link isExternal>
+          <Button mt="8" colorScheme="teal">
             Click here to re-validate 🔄
           </Button>
         </Link>
       </NextLink>
+
+      <VStack>
+        <Button
+          colorScheme="teal"
+          size="sm"
+          variant="outline"
+          mt="3"
+          onClick={() => router.reload()}
+        >
+          Reload this page
+        </Button>
+      </VStack>
+
       <TableContainer pt="10">
         <Table>
           <Thead>
@@ -53,7 +86,7 @@ export default function OnDemandISR({ data }: { data: Data[] }) {
               <Th>created at</Th>
             </Tr>
 
-            {data.reverse().map((item) => {
+            {data.map((item) => {
               return (
                 <Tr key={item.id}>
                   <Td>{item.id}</Td>

@@ -13,9 +13,10 @@ export default function Layout({ children, title }: LayoutProps) {
       <Head>
         <title>{title}</title>
       </Head>
-      <Flex bg="gray.800" textColor="white" h="100vh">
+
+      <Flex bg="gray.800" textColor="white" minHeight="100vh">
         <Container maxW={{ base: "md", md: "lg" }}>
-          <VStack mt="10">{children}</VStack>
+          <VStack my="10">{children}</VStack>
         </Container>
       </Flex>
     </>

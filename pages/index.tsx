@@ -3,21 +3,17 @@ import {
   Alert,
   AlertIcon,
   Button,
-  Container,
   Flex,
-  FormControl,
-  FormLabel,
   Heading,
-  Input,
   Link,
   Stack,
   Text,
   Textarea,
   VStack,
 } from "@chakra-ui/react";
-import Head from "next/head";
 import NextLink from "next/link";
 import { useState } from "react";
+
 import Layout from "~/components/Layout";
 
 export default function Index() {
@@ -26,8 +22,8 @@ export default function Index() {
   const [openSuccesDialog, setOpenSuccesDialog] = useState(false);
 
   async function submit() {
-    await setIsloading(true);
-    const { status } = await fetch(
+    setIsloading(true);
+    const { success } = await fetch(
       "https://supabase-cloudflare-worker.zakiego.workers.dev/",
       {
         method: "POST",
@@ -38,6 +34,7 @@ export default function Index() {
       },
     ).then((resp) => resp.json());
 
+    setInput("");
     setIsloading(false);
     setOpenSuccesDialog(true);
 
@@ -48,12 +45,13 @@ export default function Index() {
 
   return (
     <Layout title="Learn On-demand Incremental Static Regeneration">
-      <Heading mb="3">Say Something First😉</Heading>
+      <Heading mb="4">Say Something First 😉</Heading>
 
       <Textarea
         onChange={(e) => {
           setInput(e.target.value);
         }}
+        value={input}
         id="text"
         mt="7"
         placeholder="Ueeeeeewooooooooo"
@@ -74,6 +72,7 @@ export default function Index() {
         <Button
           onClick={() => submit()}
           isLoading={isLoading}
+          isDisabled={input.length == 0}
           colorScheme="teal"
           mt="1"
           size="sm"
@@ -82,22 +81,22 @@ export default function Index() {
         </Button>
       </Stack>
       <VStack pt="9" spacing="3">
+        <Heading size="xl"> What should I do?</Heading>
+        <Text>1. Write something in the form</Text>
         <NextLink href="/static" passHref>
           <Flex align="center">
-            <Link isExternal>Get Static Props Page 😐</Link>
+            <Link isExternal>2. Check Get Static Props page 😐</Link>
             <ExternalLinkIcon ml="5px" />
           </Flex>
         </NextLink>
-
         <NextLink href="/on-demand" passHref>
           <Flex align="center">
-            <Link>On-demand ISR Page 🥳</Link>
+            <Link>3. Check On-demand ISR page and refresh 🥳</Link>
             <ExternalLinkIcon ml="5px" />
           </Flex>
         </NextLink>
-
         <VStack pt="8">
-          <Heading size="lg">Reference</Heading>
+          <Heading size="md">Reference</Heading>
 
           <NextLink
             href="https://medium.com/@mzakiyuddin/tutorial-menggunakan-fitur-on-demand-incremental-static-regeneration-di-next-js-78f33cb857a5"
