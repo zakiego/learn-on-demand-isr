@@ -33,7 +33,7 @@ export default function StaticPage({ data }: { data: Data[] }) {
   const title = "Get Static Props Page 😐";
   return (
     <Layout title={title}>
-      <Heading>{title}</Heading>
+      <Heading textAlign="center">{title}</Heading>
 
       <Text textAlign="center" pt="3">
         The data on this page is only fetched once during the build process
@@ -43,7 +43,6 @@ export default function StaticPage({ data }: { data: Data[] }) {
         <Table>
           <Thead>
             <Tr>
-              <Th>id</Th>
               <Th>Text</Th>
               <Th>created at</Th>
             </Tr>
@@ -51,7 +50,6 @@ export default function StaticPage({ data }: { data: Data[] }) {
             {data.map((item) => {
               return (
                 <Tr key={item.id}>
-                  <Td>{item.id}</Td>
                   <Td>{item.content}</Td>
                   <Td>{new Date(item.created_at).toLocaleString()}</Td>
                 </Tr>

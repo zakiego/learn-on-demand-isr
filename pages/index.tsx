@@ -12,7 +12,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import NextLink from "next/link";
-import { useState } from "react";
+import React, { useState } from "react";
 
 import Layout from "~/components/Layout";
 
@@ -45,10 +45,10 @@ export default function Index() {
 
   return (
     <Layout title="Learn On-demand Incremental Static Regeneration">
-      <Heading mb="4">Say Something First 😉</Heading>
+      <Heading mb="7">Say Something First 😉</Heading>
 
       <Textarea
-        onChange={(e) => {
+        onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
           setInput(e.target.value);
         }}
         value={input}
@@ -95,11 +95,22 @@ export default function Index() {
             <ExternalLinkIcon ml="5px" />
           </Flex>
         </NextLink>
+
+        <Flex align="center" as="u" pt="8" textUnderlineOffset={1}>
+          <Link
+            href="https://github.com/zakiego/learn-on-demand-isr"
+            isExternal
+          >
+            <Heading size="md">Source code</Heading>
+          </Link>
+          <ExternalLinkIcon ml="5px" />
+        </Flex>
+
         <VStack pt="8">
           <Heading size="md">Reference</Heading>
 
           <NextLink
-            href="https://medium.com/@mzakiyuddin/tutorial-menggunakan-fitur-on-demand-incremental-static-regeneration-di-next-js-78f33cb857a5"
+            href="https://mzakiyuddin.medium.com/apa-itu-fitur-on-demand-incremental-static-regeneration-di-next-js-64c68fe12c66"
             passHref
           >
             <Link isExternal>

@@ -12,6 +12,15 @@ export default function Layout({ children, title }: LayoutProps) {
     <>
       <Head>
         <title>{title}</title>
+        <meta
+          name="twitter:card"
+          content="Learn On-demand Incremental Static Regeneration"
+        />
+        <meta name="twitter:creator" content="@zakiego" />
+        <meta
+          property="og:title"
+          content="Learn On-demand Incremental Static Regeneration"
+        />
       </Head>
 
       <Flex bg="gray.800" textColor="white" minHeight="100vh">

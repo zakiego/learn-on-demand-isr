@@ -40,19 +40,26 @@ export default function OnDemandISR({ data }: { data: Data[] }) {
 
   return (
     <Layout title={title}>
-      <Heading>{title}</Heading>
+      <Heading textAlign="center">{title}</Heading>
 
       <Text textAlign="center" pt="3">
         You can update this page by re-validating
       </Text>
 
-      <VStack pt="4">
+      <Link
+        pt="4"
+        textUnderlineOffset={2}
+        opacity="70%"
+        href="https://github.com/zakiego/learn-on-demand-isr/blob/main/pages/api/revalidate.ts"
+      >
+        <Text as="u">source code</Text>
+      </Link>
+      <VStack>
         <CopyBlock
           text={code}
           language="typescript"
           showLineNumbers={false}
           theme={nord}
-          highlight="3"
           codeBlock
         />
       </VStack>
@@ -81,7 +88,6 @@ export default function OnDemandISR({ data }: { data: Data[] }) {
         <Table>
           <Thead>
             <Tr>
-              <Th>id</Th>
               <Th>Text</Th>
               <Th>created at</Th>
             </Tr>
@@ -89,7 +95,6 @@ export default function OnDemandISR({ data }: { data: Data[] }) {
             {data.map((item) => {
               return (
                 <Tr key={item.id}>
-                  <Td>{item.id}</Td>
                   <Td>{item.content}</Td>
                   <Td>{new Date(item.created_at).toLocaleString()}</Td>
                 </Tr>
