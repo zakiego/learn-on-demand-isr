@@ -12,14 +12,30 @@ export default function Layout({ children, title }: LayoutProps) {
     <>
       <Head>
         <title>{title}</title>
+        <meta name="twitter:card" content="summary_large_image" />
         <meta
-          name="twitter:card"
-          content="Learn On-demand Incremental Static Regeneration"
+          name="twitter:title"
+          content="Learn On-demand Incremental Static Regeneration (ISR)"
+        />
+        <meta
+          name="twitter:description"
+          content="It's a fun feature. Wanna try?"
+        />
+
+        <meta
+          name="twitter:image"
+          content="https://learn-on-demand-isr.vercel.app/static/images/card.png"
         />
         <meta name="twitter:creator" content="@zakiego" />
         <meta
           property="og:title"
-          content="Learn On-demand Incremental Static Regeneration"
+          content="Learn On-demand Incremental Static Regeneration (ISR)"
+        />
+        <meta name="og:description" content="It's a fun feature. Wanna try?" />
+
+        <meta
+          content="https://learn-on-demand-isr.vercel.app/static/images/card.png"
+          property="og:image"
         />
       </Head>
 
